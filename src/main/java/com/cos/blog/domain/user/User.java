@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class User {
 	@Id	// Primary Key
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;	// 시퀀스, auto_increment
 	
 	@Column(nullable = false, length = 100, unique = true)
