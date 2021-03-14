@@ -7,10 +7,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.cos.blog.config.oauth.OAuth2DetailsService;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration	// IoC 등록
 public class SecurityConfig extends WebSecurityConfigurerAdapter{	// 어뎁터를 쓴다는건 무언가를 걸러준다는 것
 
+	private final OAuth2DetailsService oAuth2DetailsService;
+	
 	// IoC 등록만 하면 AuthenticationManager가 BCrypt로 자동 검증해준다.
 	@Bean
 	public BCryptPasswordEncoder encode() {
@@ -28,6 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{	// 어뎁터�
 			.formLogin()	// x-www-form-urlencoded 타입으로 던져주어야한다. json으로 던지면 못 받는다!!
 			.loginPage("/loginForm")
 			.loginProcessingUrl("/login")
-			.defaultSuccessUrl("/");	// 로그인이 성공하면 최초로 어디로 이동 할 것인지 설정  but 원래 갈려던 페이지요청이 있었다면 그 요청으로 보내줌!	
+			.defaultSuccessUrl("/")		// 로그인이 성공하면 최초로 어디로 이동 할 것인지 설정  but 원래 갈려던 페이지요청이 있었다면 그 요청으로 보내줌!
+			.and()
+			.oauth2Login()
+			.userInfoEndpoint()
+			.userService(oAuth2DetailsService);
 	}
 }
