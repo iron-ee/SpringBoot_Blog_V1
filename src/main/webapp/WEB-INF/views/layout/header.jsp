@@ -15,6 +15,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <title>Blog</title>
 </head>
 <body>
@@ -40,7 +44,7 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavbar">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="/post/saveForm">글쓰기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/1">회원정보보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/${principal.user.id}">회원정보보기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 					</ul>
 				</div>
